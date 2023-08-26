@@ -37,7 +37,6 @@ void ProcessFile(const std::string& filePath) {
     }
 
     bool prevCharIsCR = false;
-    bool prevCharIsLF = false;
 
     int lineNumber = 1;
     char c;
@@ -55,13 +54,13 @@ void ProcessFile(const std::string& filePath) {
             prevCharIsCR = false;
         }
         else {
-            if (prevCharIsCR && !prevCharIsLF) {
+            if (prevCharIsCR) {
                 std::cout << RED << "\"" << filePath << "\"" << RESET
                     << " - Line " << lineNumber << " ends with "
                     << RED << "CR" << RESET << std::endl;
+                lineNumber++;
             }
             prevCharIsCR = false;
-            prevCharIsLF = false;
         }
     }
 
